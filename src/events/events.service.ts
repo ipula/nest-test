@@ -92,16 +92,15 @@ export class EventsService {
 
   @Get('events')
   async getEventsWithWorkshops() {
-    return this.eventRepository.find({
-      relations: {
-        workshop: true,
-      },
-      where: {
-        workshop: {
-          start: MoreThan(new Date()),
+    try {
+      return this.eventRepository.find({
+        relations: {
+          workshop: true,
         },
-      },
-    });
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   /*
@@ -171,6 +170,19 @@ export class EventsService {
      */
   @Get('futureevents')
   async getFutureEventWithWorkshops() {
-    throw new Error('TODO task 2');
+    try {
+      return this.eventRepository.find({
+        relations: {
+          workshop: true,
+        },
+        where: {
+          workshop: {
+            start: MoreThan(new Date()),
+          },
+        },
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
