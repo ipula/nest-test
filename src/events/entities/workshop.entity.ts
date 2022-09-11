@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Event } from './event.entity';
 
 @Entity()
@@ -7,11 +7,13 @@ export class Workshop {
   id: number;
 
   @Column({ type: 'datetime' })
-  start: string;
+  start: Date;
 
   @Column({ type: 'datetime' })
   end: string;
 
+  @ManyToOne((_type) => Event, (event) => event.workshop, { eager: false })
+  @JoinColumn({ name: 'eventId' })
   @Column({ type: 'integer', default: null })
   eventId: number;
 
