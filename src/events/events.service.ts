@@ -91,11 +91,11 @@ export class EventsService {
      */
 
   @Get('events')
-  async getEventsWithWorkshops() {
+  async getEventsWithWorkshops(): Promise<Event[]> {
     try {
-      return this.eventRepository.find({
+      return await this.eventRepository.find({
         relations: {
-          workshop: true,
+          workshops: true,
         },
       });
     } catch (error) {
@@ -169,14 +169,14 @@ export class EventsService {
     ```
      */
   @Get('futureevents')
-  async getFutureEventWithWorkshops() {
+  async getFutureEventWithWorkshops(): Promise<Event[]> {
     try {
-      return this.eventRepository.find({
+      return await this.eventRepository.find({
         relations: {
-          workshop: true,
+          workshops: true,
         },
         where: {
-          workshop: {
+          workshops: {
             start: MoreThan(new Date()),
           },
         },

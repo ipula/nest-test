@@ -19,5 +19,5 @@ export class Event {
   createdAt: string;
 
   @OneToMany((_type) => Workshop, (workshop) => workshop.eventId, {})
-  workshop: Workshop[];
+  workshops: Workshop[];
 }

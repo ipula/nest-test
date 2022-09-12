@@ -12,11 +12,11 @@ export class EventsController {
 
   @Get('events')
   async getEventsWithWorkshops() {
-    return this.eventsService.getEventsWithWorkshops();
+    return await this.eventsService.getEventsWithWorkshops();
   }
 
   @Get('futureevents')
   async getFutureEventWithWorkshops() {
-    return this.eventsService.getFutureEventWithWorkshops();
+    return await this.eventsService.getFutureEventWithWorkshops();
   }
 }

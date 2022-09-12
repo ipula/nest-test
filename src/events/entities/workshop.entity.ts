@@ -12,7 +12,7 @@ export class Workshop {
   @Column({ type: 'datetime' })
   end: string;
 
-  @ManyToOne((_type) => Event, (event) => event.workshop, { eager: false })
+  @ManyToOne((_type) => Event, (event) => event.workshops, { eager: false })
   @JoinColumn({ name: 'eventId' })
   @Column({ type: 'integer', default: null })
   eventId: number;
